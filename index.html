@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday Mrs. Volpe! 🎉</title>
+  <meta name="description" content="Happy Birthday Mrs. Volpe!" />
+  <style>
+    :root {
+      --bg1: #0f172a;
+      --bg2: #1f2937;
+      --card: rgba(255, 255, 255, 0.08);
+      --cardBorder: rgba(255, 255, 255, 0.18);
+      --text: rgba(255, 255, 255, 0.92);
+      --muted: rgba(255, 255, 255, 0.72);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      overflow: hidden;
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(236, 72, 153, 0.35), transparent 60%),
+        radial-gradient(900px 700px at 80% 30%, rgba(59, 130, 246, 0.35), transparent 55%),
+        radial-gradient(1000px 900px at 50% 100%, rgba(34, 197, 94, 0.25), transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    /* Confetti canvas */
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      width: min(760px, 92vw);
+      border-radius: 24px;
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      padding: clamp(18px, 4vw, 34px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.10);
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: clamp(34px, 5vw, 54px);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+
+    p {
+      margin: 0;
+      font-size: clamp(16px, 2.2vw, 20px);
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .note {
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(15, 23, 42, 0.25);
+    }
+
+    .actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    button {
+      cursor: pointer;
+      border: 0;
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-weight: 700;
+      font-size: 15px;
+      color: rgba(0,0,0,0.85);
+      background: rgba(255,255,255,0.92);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+      transition: transform 0.08s ease, filter 0.08s ease;
+    }
+    button:hover { filter: brightness(1.02); }
+    button:active { transform: translateY(1px) scale(0.99); }
+
+    .hint {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .footer {
+      margin-top: 18px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* Little floating hearts */
+    .floaty {
+      position: absolute;
+      inset: -40px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.65;
+      filter: drop-shadow(0 18px 22px rgba(0,0,0,0.25));
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body { overflow: auto; }
+      .hint { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+
+  <svg class="floaty" viewBox="0 0 800 500" aria-hidden="true">
+    <defs>
+      <radialGradient id="g1" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stop-color="rgba(255,255,255,0.22)"/>
+        <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+      </radialGradient>
+    </defs>
+    <circle cx="120" cy="120" r="110" fill="url(#g1)"></circle>
+    <circle cx="680" cy="160" r="140" fill="url(#g1)"></circle>
+    <circle cx="400" cy="420" r="170" fill="url(#g1)"></circle>
+  </svg>
+
+  <main class="card" role="main">
+    <div class="badge">🎂✨ For Mrs. Volpe</div>
+    <h1>Happy Birthday, Mrs. Volpe! 🎉</h1>
+    <p>
+      Thank you for all your help and support throughout these past years. I hope you have a great birthday!
+    </p>
+
+    <div class="grid">
+      <div class="note">
+        <p>
+          🎉 May all your matrices be easily row reduced, their determinants quick to find, and the good times <strong>spanning</strong> this year and beyond.
+        </p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="moreConfetti">More confetti!</button>
+      <span class="hint">Tip: click/tap anywhere for a confetti burst</span>
+    </div>
+  </main>
+
+  <script>
+    // Simple confetti (no dependencies)
+    // Launches on load + on click/tap. Respects prefers-reduced-motion.
+
+    const prefersReducedMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      const dpr = Math.max(1, window.devicePixelRatio || 1);
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const colors = [
+      '#f43f5e', '#fb7185', '#f59e0b', '#fbbf24',
+      '#22c55e', '#34d399', '#3b82f6', '#60a5fa',
+      '#a78bfa', '#c084fc', '#ffffff'
+    ];
+
+    const particles = [];
+    let animationId = null;
+
+    function rand(min, max) { return Math.random() * (max - min) + min; }
+
+    function addBurst(x, y, count = 220) {
+      const angleSpread = Math.PI * 2;
+      for (let i = 0; i < count; i++) {
+        const angle = rand(0, angleSpread);
+        const speed = rand(4.5, 12.5);
+        const size = rand(6, 12);
+
+        particles.push({
+          x, y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - rand(2, 6),
+          gravity: rand(0.11, 0.18),
+          drag: rand(0.985, 0.993),
+          wobble: rand(0, Math.PI * 2),
+          wobbleSpeed: rand(0.07, 0.14),
+          rotation: rand(0, Math.PI),
+          rotationSpeed: rand(-0.25, 0.25),
+          size,
+          color: colors[(Math.random() * colors.length) | 0],
+          life: rand(70, 120),
+          shape: Math.random() < 0.6 ? 'rect' : 'circle'
+        });
+      }
+    }
+
+    function tick() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+
+        // Update
+        p.vx *= p.drag;
+        p.vy *= p.drag;
+        p.vy += p.gravity;
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        p.wobble += p.wobbleSpeed;
+        p.rotation += p.rotationSpeed;
+        p.life -= 1;
+
+        // Draw
+        const alpha = Math.max(0, Math.min(1, p.life / 120));
+        ctx.globalAlpha = alpha;
+
+        const wobbleX = Math.cos(p.wobble) * 0.9;
+        const wobbleY = Math.sin(p.wobble) * 0.6;
+
+        ctx.save();
+        ctx.translate(p.x + wobbleX, p.y + wobbleY);
+        ctx.rotate(p.rotation);
+        ctx.fillStyle = p.color;
+
+        if (p.shape === 'rect') {
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.7);
+        } else {
+          ctx.beginPath();
+          ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+
+        // Remove if done or offscreen
+        if (p.life <= 0 || p.y > window.innerHeight + 80 || p.x < -80 || p.x > window.innerWidth + 80) {
+          particles.splice(i, 1);
+        }
+      }
+
+      ctx.globalAlpha = 1;
+
+      if (particles.length > 0) {
+        animationId = requestAnimationFrame(tick);
+      } else {
+        animationId = null;
+      }
+    }
+
+    function burstAtCenter() {
+      addBurst(window.innerWidth * 0.5, window.innerHeight * 0.35, 240);
+      if (!animationId) tick();
+    }
+
+    function burstAt(x, y) {
+      addBurst(x, y, 180);
+      if (!animationId) tick();
+    }
+
+    // Launch confetti when opening the page
+    if (!prefersReducedMotion) {
+      // A couple bursts for a nicer opening effect
+      setTimeout(() => burstAtCenter(), 120);
+      setTimeout(() => burstAt(window.innerWidth * 0.25, window.innerHeight * 0.4), 320);
+      setTimeout(() => burstAt(window.innerWidth * 0.75, window.innerHeight * 0.4), 520);
+    }
+
+    // Interactions
+    document.getElementById('moreConfetti').addEventListener('click', () => {
+      if (prefersReducedMotion) return;
+      burstAtCenter();
+    });
+
+    window.addEventListener('pointerdown', (e) => {
+      if (prefersReducedMotion) return;
+      burstAt(e.clientX, e.clientY);
+    });
+  </script>
+</body>
+</html>
